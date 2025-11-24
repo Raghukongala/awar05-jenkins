@@ -58,17 +58,11 @@ public class SecurityConfig {
                 .failureUrl("/login?error=true")
                 .permitAll()
             )
-            .rememberMe(remember -> remember
-                .key("uniqueAndSecretKey")
-                .tokenValiditySeconds(86400 * 7) // 7 days
-                .rememberMeParameter("remember-me")
-                .userDetailsService(userDetailsService)
-            )
             .logout(logout -> logout
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login?logout=true")
                 .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID", "remember-me")
+                .deleteCookies("JSESSIONID")
                 .permitAll()
             )
             .csrf(csrf -> csrf

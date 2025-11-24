@@ -101,40 +101,5 @@
             </div>
         </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        // Auto-hide alerts after 5 seconds
-        setTimeout(function() {
-            $('.alert').fadeOut('slow');
-        }, 5000);
-
-        // Password strength indicator
-        $('#password').on('keyup', function() {
-            var password = $(this).val();
-            var strength = 0;
-            
-            if (password.length >= 6) strength++;
-            if (password.length >= 10) strength++;
-            if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
-            if (/\d/.test(password)) strength++;
-            if (/[^a-zA-Z\d]/.test(password)) strength++;
-            
-            var strengthText = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong'];
-            var strengthColor = ['danger', 'warning', 'info', 'primary', 'success'];
-            
-            if (password.length > 0) {
-                var indicator = '<small class="text-' + strengthColor[strength-1] + '">Password Strength: ' + strengthText[strength-1] + '</small>';
-                $('#password').next('.text-danger').remove();
-                $('#password').after(indicator);
-            }
-        });
-
-        // Add loading state to register button
-        $('form').on('submit', function() {
-            var btn = $(this).find('button[type="submit"]');
-            btn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm mr-2"></span>Creating account...');
-        });
-    </script>
 </body>
 </html>

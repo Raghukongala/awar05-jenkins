@@ -1,9 +1,7 @@
 package com.avizway.Springdemo.controller;
 
 import com.avizway.Springdemo.model.User;
-import com.avizway.Springdemo.service.UserActivityService;
 import com.avizway.Springdemo.service.UserService;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +20,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class AuthController {
 
     private final UserService userService;
-    private final UserActivityService activityService;
 
     @GetMapping("/login")
     public String login(@RequestParam(value = "error", required = false) String error,
@@ -46,7 +43,6 @@ public class AuthController {
     @PostMapping("/register")
     public String registerUser(@Valid @ModelAttribute("user") User user,
                               BindingResult result,
-                              HttpServletRequest request,
                               RedirectAttributes redirectAttributes,
                               Model model) {
         if (result.hasErrors()) {
@@ -63,8 +59,7 @@ public class AuthController {
                 return "register";
             }
 
-            User savedUser = userService.registerUser(user);
-            activityService.logActivity(savedUser, "USER_REGISTERED", "New user registered", request);
+            userService.registerUser(user);
             redirectAttributes.addFlashAttribute("message", "Registration successful! Please login.");
             return "redirect:/login";
         } catch (Exception e) {

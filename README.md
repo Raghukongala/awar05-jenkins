@@ -35,32 +35,6 @@ A production-ready Spring Boot application featuring:
 - Activity tracking
 - Quick access to system metrics
 
-### Profile Management
-- View and edit user profile
-- Update email and full name
-- Change password with confirmation
-- Profile avatar with user initials
-- Account information display
-- Recent activity log (last 10 activities)
-
-### User Activity Tracking
-- Automatic logging of user actions:
-  - Login events
-  - Registration
-  - Profile updates
-  - Password changes
-- Activity details include IP address, browser info, and timestamp
-- Activity history viewable on profile page
-
-### Enhanced User Experience
-- Persistent "Remember Me" (7 days)
-- Real-time password strength indicator
-- Auto-dismissing success/error messages
-- Loading states on form submissions
-- Toast notification system
-- Modern UI with Font Awesome icons
-- Responsive design for all devices
-
 ### Development Features
 - H2 Console for database inspection (`/h2-console`)
 - Hot reload with Spring DevTools
@@ -106,9 +80,7 @@ chmod +x ./mvnw
 4. **Access the application**
 - Home: `http://localhost:8090/springdemo`
 - Login: `http://localhost:8090/springdemo/login`
-- Register: `http://localhost:8090/springdemo/register`
 - Dashboard: `http://localhost:8090/springdemo/dashboard` (requires login)
-- Profile: `http://localhost:8090/springdemo/profile` (requires login)
 - H2 Console: `http://localhost:8090/springdemo/h2-console`
   - JDBC URL: `jdbc:h2:mem:springdemo`
   - Username: `sa`
@@ -282,10 +254,7 @@ pipeline {
 
 ### Protected Endpoints (Requires Authentication)
 - `GET /dashboard` - User dashboard
-- `GET /profile` - User profile page
-- `POST /profile/update` - Update user profile
 - `POST /logout` - Logout
-- `GET /api/user/me` - Get current user info (API)
 
 ### Admin Only (Requires ROLE_ADMIN)
 - `GET /h2-console` - Database console (dev only)
